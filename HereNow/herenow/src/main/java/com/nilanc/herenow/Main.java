@@ -3,10 +3,16 @@ package com.nilanc.herenow;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
+import android.location.Criteria;
+import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,32 +36,53 @@ public class Main extends Activity implements AdapterView.OnItemClickListener {
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
-    private ArrayAdapter<String> menuAdapter;
+    private static ArrayAdapter<String> menuAdapter;
     private ListView mainMenu;
     private LocationManager locMan;
-    private LocationSearch searcher;
+    private static LocationSearch searcher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("Nearby chatrooms");
+        if (android.os.Build.VERSION.SDK_INT > 9)
+        {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
 
         searcher = new LocationSearch();
-        try {
-            searcher.performSearch();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            searcher.performSearch();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
 //        locMan = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         mainMenu = (ListView) findViewById(R.id.main_menu);
-        String[] chatrooms = new String[] { "WUHack" };
+        String[] chatrooms = new String[] { "WUHack", "Cardinals vs. Rockies" };
         List<String> chatList = new ArrayList<String>();
         chatList.addAll( Arrays.asList(chatrooms) );
         menuAdapter = new ArrayAdapter<String>(this, R.layout.chatroom, chatList);
         mainMenu.setAdapter(menuAdapter);
         mainMenu.setOnItemClickListener(this);
+
+        // Capture location
+        ////////////////////
+        LocationManager mlocManager = null;
+        LocListener mlocListener;
+        mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+        criteria.setAccuracy(Criteria.ACCURACY_FINE);
+        criteria.setAltitudeRequired(false);
+        criteria.setBearingRequired(false);
+        criteria.setSpeedRequired(false);
+        mlocListener = new LocListener();
+        String prov = mlocManager.getBestProvider(criteria, false);
+        mlocManager.requestLocationUpdates(prov, 0, 0, mlocListener);
+        Location temp = LocListener.getLocation(this);
+        updateUI();
 
 //        mNavigationDrawerFragment = (NavigationDrawerFragment)
 //                getFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -123,6 +150,25 @@ public class Main extends Activity implements AdapterView.OnItemClickListener {
         actionBar.setTitle(mTitle);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                updateUI();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
@@ -138,26 +184,19 @@ public class Main extends Activity implements AdapterView.OnItemClickListener {
 //    }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Intent launchChat = new Intent(this, Chat.class);
         startActivity(launchChat);
     }
 
-    public static void updateCoordinatesUI(double latitude, double longitude)
+    public static void updateUI()
     {
-        // do something with coordinates
+        try {
+            PlacesList pl = searcher.performSearch();
+//            System.out.println(pl.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

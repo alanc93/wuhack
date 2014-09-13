@@ -18,21 +18,21 @@ public class LocListener implements LocationListener {
 
     public void onLocationChanged(Location loc)
     {
-        loc.getLatitude();
-        loc.getLongitude();
+//        loc.getLatitude();
+//        loc.getLongitude();
         latitude=loc.getLatitude();
         longitude=loc.getLongitude();
-
-        Main.updateCoordinatesUI(latitude, longitude);
+//
+        Main.updateUI();
     }
 
     public void onProviderDisabled(String provider)
     {
-        Main.updateCoordinatesUI(-1, -1);
+        Main.updateUI();
     }
     public void onProviderEnabled(String provider)
     {
-        Main.updateCoordinatesUI(1, 1);
+        Main.updateUI();
     }
     public void onStatusChanged(String provider, int status, Bundle extras)
     {
@@ -49,6 +49,8 @@ public class LocListener implements LocationListener {
             if (l != null)
                 break;
         }
+        latitude = l.getLatitude();
+        longitude = l.getLongitude();
         return l;
     }
 }

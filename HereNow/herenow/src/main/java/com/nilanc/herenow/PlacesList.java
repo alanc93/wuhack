@@ -13,4 +13,12 @@ public class PlacesList {
 
     @Key
     public List<Place> results;
+
+    public String toString() {
+        String s = "";
+        for (Place p : results) {
+            s += p.name + " ";
+        }
+        return s;
+    }
 }

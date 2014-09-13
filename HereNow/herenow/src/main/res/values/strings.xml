@@ -12,5 +12,6 @@
     <string name="title_activity_chat">Chat</string>
     <string name="hello_world">Hello world!</string>
     <string name="tbox_def">Enter message here...</string>
+    <string name="action_refresh">Refresh</string>
 
 </resources>

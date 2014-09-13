@@ -39,15 +39,17 @@ public class LocationSearch {
         });
     }
 
-    public String performSearch() throws Exception{
+    public PlacesList performSearch() throws Exception{
         double lat = LocListener.latitude;
         double lon = LocListener.longitude;
-        int radius = 1;
+        System.out.println(lat);
+        System.out.println(lon);
+        int radius = 10;
 
         return performSearch(lat, lon, radius);
     }
 
-    public String performSearch(double lat, double lon, int radius) throws Exception {
+    public PlacesList performSearch(double lat, double lon, int radius) throws Exception {
         try {
             System.out.println("Perform Search ....");
             System.out.println("-------------------");
@@ -64,19 +66,16 @@ public class LocationSearch {
 
             PlacesList places = request.execute().parseAs(PlacesList.class);
             System.out.println("STATUS = " + places.status);
-            for (Place place : places.results) {
-                System.out.print(place);
-
-            }
-            for (Place place : places.results) {
-                return place.name;
-            }
+//            for (Place place : places.results) {
+//                System.out.print(place.name);
+//
+//            }
+            return places;
 
         } catch (HttpResponseException e) {
             System.out.println("error");
             throw e;
         }
-        return "";
     }
 
 }
