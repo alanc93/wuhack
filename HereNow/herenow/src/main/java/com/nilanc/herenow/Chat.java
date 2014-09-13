@@ -15,26 +15,76 @@ import android.view.ViewGroup;
 import android.os.Build;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static android.view.inputmethod.EditorInfo.*;
 
 public class Chat extends Activity {
+
+    private ListView msgList;
+    private MsgAdapter msgAdptr;
+    private EditText msg;
+    private Room chatRoom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
         getActionBar().setDisplayHomeAsUpEnabled(true);
+//
+//        if (savedInstanceState == null) {
+//            getFragmentManager().beginTransaction()
+//                    .add(R.id.container, new PlaceholderFragment())
+//                    .commit();
+//        }
 
-        if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
-        }
+        init();
+    }
+
+    public void init() {
+        msgList = (ListView) findViewById(R.id.msgList);
+
+        msg = (EditText) findViewById(R.id.msgBox);
+
+
+        msgAdptr = new MsgAdapter(this, new ArrayList<Message>());
+        msgList.setAdapter(msgAdptr);
+
+        msg.setOnEditorActionListener(new OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actId, KeyEvent e) {
+                if(actId == IME_ACTION_SEND) {
+                    //perform send message stuff
+                    Message m = new Message(v.getText().toString(), new Date());
+                    v.setText("");
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
+
+    public void showMessage(Message message) {
+//        saveMessageToHistory(message);
+        msgAdptr.add(message);
+        msgAdptr.notifyDataSetChanged();
+        scrollDown();
+    }
+
+    public void showMessage(List<Message> messages) {
+        msgAdptr.add(messages);
+        msgAdptr.notifyDataSetChanged();
+        scrollDown();
+    }
+
+    private void scrollDown() {
+        msgList.setSelection(msgList.getCount() - 1);
     }
 
     @Override
