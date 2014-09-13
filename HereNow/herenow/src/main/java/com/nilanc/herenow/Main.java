@@ -6,6 +6,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -64,7 +65,9 @@ public class Main extends Activity
                 mTitle = getString(R.string.title_section2);
                 break;
             case 3:
-                mTitle = getString(R.string.title_section3);
+                Intent launchChat = new Intent(this, Chat.class);
+                startActivity(launchChat);
+                //mTitle = getString(R.string.title_section3);
                 break;
         }
     }

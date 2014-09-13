@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,6 +18,7 @@ public class Chat extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
@@ -25,6 +27,8 @@ public class Chat extends Activity {
         }
     }
 
+//    @Override
+//    protected boolean onActionSend
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -39,9 +43,13 @@ public class Chat extends Activity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+
+        switch(item.getItemId()) {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+            case R.id.action_settings:
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

@@ -18,7 +18,8 @@
         </activity>
         <activity
             android:name="com.nilanc.herenow.Chat"
-            android:label="@string/title_activity_chat" >
+            android:label="@string/title_activity_chat"
+            android:parentActivityName="com.nilanc.herenow.Main">
         </activity>
     </application>
 
