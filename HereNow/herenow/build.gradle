@@ -20,4 +20,11 @@ android {
 
 dependencies {
     compile 'com.android.support:support-v4:20.0.0'
+    compile 'com.google.android.gms:play-services:5.+'
+    compile 'com.google.http-client:google-http-client-android:1.17.0-rc'
+    compile 'com.google.guava:guava:14.0.+'
+    compile 'com.google.api-client:google-api-client:1.17.0-rc'
+    compile 'com.google.api-client:google-api-client-android:1.17.0-rc'
+    compile fileTree(dir: "libs", include: ['*.jar', '*.aar'])
+
 }
