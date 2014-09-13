@@ -18,6 +18,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
+import java.util.Date;
+
 import static android.view.inputmethod.EditorInfo.*;
 
 public class Chat extends Activity {
@@ -33,13 +35,6 @@ public class Chat extends Activity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
-    }
-
-
-    private boolean sendMessage(Message m) {
-        if(m.getMsg().isEmpty())
-            return false;
-        return true;
     }
 
     @Override
@@ -85,9 +80,8 @@ public class Chat extends Activity {
                 public boolean onEditorAction(TextView v, int actId, KeyEvent e) {
                     if(actId == IME_ACTION_SEND) {
                         //perform send message stuff
-                        Time now = new Time();
-                        now.setToNow();
-                        Message m = new Message(v.getText().toString(), 2, now);
+                        Message m = new Message(v.getText().toString(), new Date());
+                        v.setText("");
                         return true;
                     }
                     return false;
@@ -96,5 +90,4 @@ public class Chat extends Activity {
             return rootView;
         }
     }
-
 }

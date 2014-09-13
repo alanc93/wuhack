@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pre-dex-items>
+
+    <item
+        dex="/home/Alex/Projects/wuhack/HereNow/herenow/build/intermediates/pre-dexed/debug/support-annotations-20.0.0-0c27c75683705cd77256486b54e027917eb2ad82.jar"
+        jar="/home/Alex/Downloads/android-sdk-linux/extras/android/m2repository/com/android/support/support-annotations/20.0.0/support-annotations-20.0.0.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="9d9013e9ff35fc3756411e62873c363c70c638fa"/>
+    <item
+        dex="/home/Alex/Projects/wuhack/HereNow/herenow/build/intermediates/pre-dexed/debug/quickblox-android-1.2.4-7e177fd36cf251dc8340d0f6ffcfa4b6644c4a3f.jar"
+        jar="/home/Alex/Projects/wuhack/HereNow/herenow/libs/quickblox-android-1.2.4.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="0980419c50643c4e3ce10cf39fb25b283e8a3ca9"/>
+    <item
+        dex="/home/Alex/Projects/wuhack/HereNow/herenow/build/intermediates/pre-dexed/debug/internal_impl-20.0.0-317981d13095cedc94f5ba355750c44ce996df04.jar"
+        jar="/home/Alex/Projects/wuhack/HereNow/herenow/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/libs/internal_impl-20.0.0.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d"/>
+    <item
+        dex="/home/Alex/Projects/wuhack/HereNow/herenow/build/intermediates/pre-dexed/debug/classes-338fa9bd4fa7d8a8b56b8dab57c4b38925bab07d.jar"
+        jar="/home/Alex/Projects/wuhack/HereNow/herenow/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/classes.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="8694693636ab36910c8100ce527c258ff3ebece0"/>
+    <item
+        dex="/home/Alex/Projects/wuhack/HereNow/herenow/build/intermediates/pre-dexed/debug/classes-4b4eebf4a2b5ae00c04a1beaf0ef519f45d2b5fc.jar"
+        jar="/home/Alex/Projects/wuhack/HereNow/herenow/build/intermediates/exploded-aar/com.google.android.gms/play-services/5.2.08/classes.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="1ed7a7a05185651f9af41ad93711cb96b66f331c"/>
+
+</pre-dex-items>
