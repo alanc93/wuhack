@@ -2,6 +2,7 @@
 <pre-dex-items>
 
     <item
+<<<<<<< HEAD
         dex="/Users/DanNi/projects/wuhack2/HereNow/herenow/build/intermediates/pre-dexed/debug/google-http-client-jackson2-1.18.0-rc-e7dd627e085daebb96cd9e12fae06dc6fdf90a2c.jar"
         jar="/Users/DanNi/projects/wuhack2/HereNow/herenow/libs/google-http-client-jackson2-1.18.0-rc.jar"
         jumboMode="false"
@@ -91,5 +92,12 @@
         jumboMode="false"
         revision="19.1.0"
         sha1="637da6cca16f4a97c4771137bce02e7c291e67af"/>
+=======
+        dex="/home/Alex/Projects/wuhack/HereNow/herenow/build/intermediates/pre-dexed/debug/support-v4-19.0.1-4ec8c9d89c2a81cac20606618c3aa1cdc94346b4.jar"
+        jar="/home/Alex/android-studio/sdk/extras/android/m2repository/com/android/support/support-v4/19.0.1/support-v4-19.0.1.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="587da9a481ffd341d2fa091704489b89845ddacd"/>
+>>>>>>> 44b9a183b6709afde800ccbe47e38d218771d404
 
 </pre-dex-items>

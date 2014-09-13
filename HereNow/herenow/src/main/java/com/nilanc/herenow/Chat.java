@@ -5,12 +5,19 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
+
+import static android.view.inputmethod.EditorInfo.*;
 
 public class Chat extends Activity {
 
@@ -27,8 +34,15 @@ public class Chat extends Activity {
         }
     }
 
-//    @Override
-//    protected boolean onActionSend
+
+    private boolean sendMessage(TextView tv) {
+        String toSend;
+        toSend = tv.getText().toString();
+        tv.setText("");
+        if(toSend.isEmpty())
+            return false;
+        return true;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -66,6 +80,18 @@ public class Chat extends Activity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_chat, container, false);
+
+            EditText msg = (EditText) rootView.findViewById(R.id.msgBox);
+            msg.setOnEditorActionListener(new OnEditorActionListener() {
+                @Override
+                public boolean onEditorAction(TextView v, int actId, KeyEvent e) {
+                    if(actId == IME_ACTION_SEND) {
+                        //perform send message stuff
+                        return true;
+                    }
+                    return false;
+                }
+            });
             return rootView;
         }
     }
