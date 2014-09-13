@@ -3,7 +3,11 @@ package com.nilanc.herenow;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -31,6 +35,7 @@ public class Main extends Activity implements AdapterView.OnItemClickListener {
     private CharSequence mTitle;
     private ArrayAdapter<String> menuAdapter;
     ListView mainMenu;
+    LocationManager locMan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +43,7 @@ public class Main extends Activity implements AdapterView.OnItemClickListener {
         setContentView(R.layout.activity_main);
 
 //        View title = getWindow().findViewById(R.id.)
-
+        locMan = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         mainMenu = (ListView) findViewById(R.id.main_menu);
         String[] planets = new String[] { "WUHack" };
         List<String> planetList = new ArrayList<String>();
@@ -56,7 +61,29 @@ public class Main extends Activity implements AdapterView.OnItemClickListener {
 //                R.id.navigation_drawer,
 //                (DrawerLayout) findViewById(R.id.drawer_layout));
 
+        LocationListener locLis = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                menuAdapter.add(location.toString());
+            }
 
+            @Override
+            public void onStatusChanged(String s, int i, Bundle bundle) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String s) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String s) {
+
+            }
+        };
+
+        locMan.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locLis);
     }
 
 //    @Override
