@@ -5,6 +5,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.text.format.Time;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -35,11 +36,8 @@ public class Chat extends Activity {
     }
 
 
-    private boolean sendMessage(TextView tv) {
-        String toSend;
-        toSend = tv.getText().toString();
-        tv.setText("");
-        if(toSend.isEmpty())
+    private boolean sendMessage(Message m) {
+        if(m.getMsg().isEmpty())
             return false;
         return true;
     }
@@ -87,6 +85,9 @@ public class Chat extends Activity {
                 public boolean onEditorAction(TextView v, int actId, KeyEvent e) {
                     if(actId == IME_ACTION_SEND) {
                         //perform send message stuff
+                        Time now = new Time();
+                        now.setToNow();
+                        Message m = new Message(v.getText().toString(), 2, now);
                         return true;
                     }
                     return false;
