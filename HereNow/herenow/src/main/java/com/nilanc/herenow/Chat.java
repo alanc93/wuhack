@@ -3,6 +3,8 @@ package com.nilanc.herenow;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.text.format.Time;
@@ -32,22 +34,20 @@ public class Chat extends Activity {
     private EditText msg;
     private Room chatRoom;
 
+    public static void start(Context context, Bundle bundle) {
+        Intent intent = new Intent(context, Chat.class);
+        intent.putExtras(bundle);
+        context.startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
         getActionBar().setDisplayHomeAsUpEnabled(true);
-//
-//        if (savedInstanceState == null) {
-//            getFragmentManager().beginTransaction()
-//                    .add(R.id.container, new PlaceholderFragment())
-//                    .commit();
-//        }
 
-        init();
-    }
 
-    public void init() {
         msgList = (ListView) findViewById(R.id.msgList);
 
         msg = (EditText) findViewById(R.id.msgBox);
@@ -55,14 +55,18 @@ public class Chat extends Activity {
 
         msgAdptr = new MsgAdapter(this, new ArrayList<Message>());
         msgList.setAdapter(msgAdptr);
+        msgAdptr.add(new Message("Hi there!", new Date()));
+        msgAdptr.add(new Message("Isn't <event> so cool!", new Date()));
 
         msg.setOnEditorActionListener(new OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actId, KeyEvent e) {
-                if(actId == IME_ACTION_SEND) {
+                if (actId == IME_ACTION_SEND) {
                     //perform send message stuff
                     Message m = new Message(v.getText().toString(), new Date());
+                    msgAdptr.add(m);
                     v.setText("");
+                    msg.onEditorAction(IME_ACTION_DONE);
                     return true;
                 }
                 return false;
@@ -109,35 +113,5 @@ public class Chat extends Activity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_chat, container, false);
-
-            EditText msg = (EditText) rootView.findViewById(R.id.msgBox);
-            msg.setOnEditorActionListener(new OnEditorActionListener() {
-                @Override
-                public boolean onEditorAction(TextView v, int actId, KeyEvent e) {
-                    if(actId == IME_ACTION_SEND) {
-                        //perform send message stuff
-                        Message m = new Message(v.getText().toString(), new Date());
-                        v.setText("");
-                        return true;
-                    }
-                    return false;
-                }
-            });
-            return rootView;
-        }
     }
 }

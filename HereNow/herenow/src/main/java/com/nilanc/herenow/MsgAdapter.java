@@ -55,7 +55,7 @@ public class MsgAdapter extends BaseAdapter {
             holder = (MsgHolder) convertView.getTag();
         }
         holder.msgText.setText(msg.getMsg());
-        holder.msgDet.setText(getTimeText(msg.getTime()));
+//        holder.msgDet.setText(/*getTimeText(msg.getTime())*/"Time");
 
         return convertView;
     }
