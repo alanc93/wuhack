@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/HereNow.iml" filepath="$PROJECT_DIR$/HereNow.iml" />
+      <module fileurl="file://$PROJECT_DIR$/herenow/herenow.iml" filepath="$PROJECT_DIR$/herenow/herenow.iml" />
+    </modules>
+  </component>
+</project>
+
