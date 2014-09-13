@@ -5,12 +5,17 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 
 public class Chat extends Activity {
 
@@ -25,10 +30,29 @@ public class Chat extends Activity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+
+        EditText msgBox = (EditText) findViewById(R.id.msgBox);
+//        msgBox.setOnEditorActionListener(new OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView v, int actId, KeyEvent e) {
+//                if(actId == EditorInfo.IME_ACTION_SEND) {
+//                    //perform send message stuff
+//                    return true;
+//                }
+//                return false;
+//            }
+//        });
     }
 
-//    @Override
-//    protected boolean onActionSend
+
+    private boolean sendMessage(TextView tv) {
+        String toSend;
+        toSend = tv.getText().toString();
+        tv.setText("");
+        if(toSend.isEmpty())
+            return false;
+        return true;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
