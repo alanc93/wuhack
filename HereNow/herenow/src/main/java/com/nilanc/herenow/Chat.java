@@ -17,6 +17,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
+import static android.view.inputmethod.EditorInfo.*;
+
 public class Chat extends Activity {
 
     @Override
@@ -30,18 +32,6 @@ public class Chat extends Activity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
-
-        EditText msgBox = (EditText) findViewById(R.id.msgBox);
-//        msgBox.setOnEditorActionListener(new OnEditorActionListener() {
-//            @Override
-//            public boolean onEditorAction(TextView v, int actId, KeyEvent e) {
-//                if(actId == EditorInfo.IME_ACTION_SEND) {
-//                    //perform send message stuff
-//                    return true;
-//                }
-//                return false;
-//            }
-//        });
     }
 
 
@@ -90,6 +80,18 @@ public class Chat extends Activity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_chat, container, false);
+
+            EditText msg = (EditText) rootView.findViewById(R.id.msgBox);
+            msg.setOnEditorActionListener(new OnEditorActionListener() {
+                @Override
+                public boolean onEditorAction(TextView v, int actId, KeyEvent e) {
+                    if(actId == IME_ACTION_SEND) {
+                        //perform send message stuff
+                        return true;
+                    }
+                    return false;
+                }
+            });
             return rootView;
         }
     }
