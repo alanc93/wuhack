@@ -100,7 +100,7 @@ public class Main extends Activity implements AdapterView.OnItemClickListener {
         criteria.setSpeedRequired(false);
         mlocListener = new LocListener();
         String prov = mlocManager.getBestProvider(criteria, false);
-        mlocManager.requestLocationUpdates(prov, 0, 0, mlocListener);
+        mlocManager.requestLocationUpdates(prov, 10, 0, mlocListener);
         Location temp = LocListener.getLocation(this);
         updateUI();
 

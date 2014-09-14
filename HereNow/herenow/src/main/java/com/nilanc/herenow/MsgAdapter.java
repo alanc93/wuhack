@@ -5,7 +5,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewManager;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -57,10 +56,9 @@ public class MsgAdapter extends BaseAdapter {
             Message prev = (Message) getItem(position - 1);
             if (!prev.fromSelf()) {
                 holder.msgSender.setText("Anonymous Hacker");
+            } else {
+                holder.msgSender.setVisibility(View.GONE);
             }
-        } else {
-            holder.msgSender.setPadding(0, 0, 0, 0);
-            ((ViewManager) holder.msgSender.getParent()).removeView(holder.msgSender);
         }
         holder.msgText.setText(msg.getMsg());
         if (msg.fromSelf()) {

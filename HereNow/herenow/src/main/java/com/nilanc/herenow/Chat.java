@@ -5,11 +5,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.support.v4.content.LocalBroadcastManager;
-
-
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
@@ -17,20 +15,16 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import android.widget.Toast;
-
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Chat extends Activity {
     public static final String RECEIVE_MESSAGE = "com.nilanc.herenow.RECEIVE_MESSAGE";
     private String CHAT_ROOM;
 
-    String PROJECT_NUMBER = "e125be0bdfdfbf2ca8fdc00e294d6850efaa";//"56902053111";
+    String PROJECT_NUMBER = "198237147302";//"56902053111";
 
     private GoogleCloudMessaging gcm;
     private String regid;
@@ -113,7 +107,7 @@ public class Chat extends Activity {
                         gcm = GoogleCloudMessaging.getInstance(getApplicationContext());
                     }
                     String regid = gcm.register(PROJECT_NUMBER);
-                    gcm.send(CHAT_ROOM, m.getMsg(), null);
+                    gcm.send(CHAT_ROOM, m.getMsg(), new Bundle());
                     System.out.println("Sent");
                 } catch (IOException e) {
                     System.out.println("Error: " + e.getMessage());
