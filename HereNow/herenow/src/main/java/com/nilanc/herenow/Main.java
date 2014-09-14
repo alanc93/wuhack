@@ -35,12 +35,12 @@ public class Main extends Activity implements AdapterView.OnItemClickListener {
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
+    private List<String> chatList;
     private CharSequence mTitle;
     private static ArrayAdapter<Place> menuAdapter;
     private ListView mainMenu;
     private LocationManager locMan;
     private static LocationSearch searcher;
-    private HashMap<String, Room> rooms;
 
     public static final String CHAT_NAME = "chat name";
     public static final String CHAT_ID = "chat id";
@@ -51,15 +51,27 @@ public class Main extends Activity implements AdapterView.OnItemClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("Chatrooms near you");
+
         if (android.os.Build.VERSION.SDK_INT > 9)
         {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
-
+//        QBAuth.createSession("user", "password", new QBCallback() {
+//            @Override
+//            public void onComplete(Result result) {
+//
+//            }
+//
+//            @Override
+//            public void onComplete(Result result, Object o) {
+//
+//            }
+//        });
         searcher = new LocationSearch();
 
         mainMenu = (ListView) findViewById(R.id.main_menu);
+
         final List<Place> chatList = new ArrayList<Place>();
         menuAdapter = new ArrayAdapter<Place>(this, android.R.layout.simple_list_item_2, android.R.id.text1, chatList) {
             @Override
@@ -73,6 +85,7 @@ public class Main extends Activity implements AdapterView.OnItemClickListener {
                 return view;
             }
         };
+
         mainMenu.setAdapter(menuAdapter);
         mainMenu.setOnItemClickListener(this);
 
@@ -88,7 +101,7 @@ public class Main extends Activity implements AdapterView.OnItemClickListener {
         criteria.setSpeedRequired(false);
         mlocListener = new LocListener();
         String prov = mlocManager.getBestProvider(criteria, false);
-        mlocManager.requestLocationUpdates(prov, 5000, 0, mlocListener);
+        mlocManager.requestLocationUpdates(prov, 0, 0, mlocListener);
         Location temp = LocListener.getLocation(this);
         updateUI();
 
@@ -124,10 +137,12 @@ public class Main extends Activity implements AdapterView.OnItemClickListener {
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Intent launchChat = new Intent(this, Chat.class);
+
         TextView v1 = (TextView) view.findViewById(android.R.id.text1);
         TextView v2 = (TextView) view.findViewById(android.R.id.text2);
         launchChat.putExtra(CHAT_NAME, v1.getText());
         launchChat.putExtra(CHAT_ID, v1.getText() + " at " + v2.getText());
+
         startActivity(launchChat);
     }
 
