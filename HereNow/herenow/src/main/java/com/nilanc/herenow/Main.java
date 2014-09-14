@@ -42,6 +42,9 @@ public class Main extends Activity implements AdapterView.OnItemClickListener {
     private static LocationSearch searcher;
     private HashMap<String, Room> rooms;
 
+    public static final String CHAT_NAME = "chat name";
+    public static final String CHAT_ID = "chat id";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +124,10 @@ public class Main extends Activity implements AdapterView.OnItemClickListener {
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Intent launchChat = new Intent(this, Chat.class);
+        TextView v1 = (TextView) view.findViewById(android.R.id.text1);
+        TextView v2 = (TextView) view.findViewById(android.R.id.text2);
+        launchChat.putExtra(CHAT_NAME, v1.getText());
+        launchChat.putExtra(CHAT_ID, v1.getText() + " at " + v2.getText());
         startActivity(launchChat);
     }
 
@@ -128,7 +135,6 @@ public class Main extends Activity implements AdapterView.OnItemClickListener {
     {
         try {
             PlacesList pl = searcher.performSearch();
-//            System.out.println(pl.toString());
             menuAdapter.clear();
             for (Place p : pl.results) {
                 if (menuAdapter.getPosition(p) == -1 && p.events != null)
