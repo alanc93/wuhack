@@ -19,6 +19,14 @@ public class Place {
     @Key
     public String[] types;
 
+    @Key
+    public Event[] events;
+
+    public static class Event {
+        @Key
+        public String summary;
+    }
+
     @Override
     public String toString() {
         String type ="";

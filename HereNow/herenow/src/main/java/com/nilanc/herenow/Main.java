@@ -22,7 +22,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Main extends Activity implements AdapterView.OnItemClickListener {
@@ -36,7 +35,7 @@ public class Main extends Activity implements AdapterView.OnItemClickListener {
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
-    private static ArrayAdapter<String> menuAdapter;
+    private static ArrayAdapter<Place> menuAdapter;
     private ListView mainMenu;
     private LocationManager locMan;
     private static LocationSearch searcher;
@@ -45,7 +44,7 @@ public class Main extends Activity implements AdapterView.OnItemClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setTitle("Nearby chatrooms");
+        setTitle("Chatrooms");
         if (android.os.Build.VERSION.SDK_INT > 9)
         {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -61,10 +60,20 @@ public class Main extends Activity implements AdapterView.OnItemClickListener {
 
 //        locMan = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         mainMenu = (ListView) findViewById(R.id.main_menu);
-        String[] chatrooms = new String[] { "WUHack", "Cardinals vs. Rockies" };
-        List<String> chatList = new ArrayList<String>();
-        chatList.addAll( Arrays.asList(chatrooms) );
-        menuAdapter = new ArrayAdapter<String>(this, R.layout.chatroom, chatList);
+        final List<Place> chatList = new ArrayList<Place>();
+//        chatList.addAll( Arrays.asList(chatrooms) );
+        menuAdapter = new ArrayAdapter<Place>(this, android.R.layout.simple_list_item_2, android.R.id.text1, chatList) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView text1 = (TextView) view.findViewById(android.R.id.text1);
+                TextView text2 = (TextView) view.findViewById(android.R.id.text2);
+
+                text1.setText(chatList.get(position).events[0].summary);
+                text2.setText(chatList.get(position).name);
+                return view;
+            }
+        };
         mainMenu.setAdapter(menuAdapter);
         mainMenu.setOnItemClickListener(this);
 
@@ -194,6 +203,11 @@ public class Main extends Activity implements AdapterView.OnItemClickListener {
         try {
             PlacesList pl = searcher.performSearch();
 //            System.out.println(pl.toString());
+            menuAdapter.clear();
+            for (Place p : pl.results) {
+                if (menuAdapter.getPosition(p) == -1 && p.events != null)
+                    menuAdapter.add(p);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
