@@ -1,17 +1,13 @@
 package com.nilanc.herenow;
 
 import android.content.Context;
-import android.text.format.DateFormat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.Date;
 import java.util.List;
@@ -55,6 +51,12 @@ public class MsgAdapter extends BaseAdapter {
             holder = (MsgHolder) convertView.getTag();
         }
         holder.msgText.setText(msg.getMsg());
+        if (msg.fromSelf()) {
+            holder.content.setGravity(Gravity.END);
+            holder.content.setBackgroundColor(0xFFFEEE);
+        } else {
+            holder.content.setGravity(Gravity.START);
+        }
 //        holder.msgDet.setText(/*getTimeText(msg.getTime())*/"Time");
 
         return convertView;
@@ -77,7 +79,6 @@ public class MsgAdapter extends BaseAdapter {
 
     private static class MsgHolder {
         public TextView msgText;
-        public TextView msgDet;
         public LinearLayout content;
     }
 }

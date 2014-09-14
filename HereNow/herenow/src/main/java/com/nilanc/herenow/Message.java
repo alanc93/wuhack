@@ -8,18 +8,18 @@ import java.util.Date;
 public class Message {
 
     private String msg;
-    private Date time;
+    private boolean self;
 
-    public Message(String msg, Date time) {
+    public Message(String msg, boolean self) {
         this.msg = msg;
-        this.time = time;
+        this.self = self;
     }
 
     public String getMsg() {
         return msg;
     }
 
-    public Date getTime() {
-        return time;
+    public boolean fromSelf() {
+        return self;
     }
 }

@@ -36,12 +36,12 @@ public class Main extends Activity implements AdapterView.OnItemClickListener {
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
+    private List<String> chatList;
     private CharSequence mTitle;
     private static ArrayAdapter<String> menuAdapter;
     private ListView mainMenu;
     private LocationManager locMan;
     private static LocationSearch searcher;
-    private HashMap<String, Room> rooms;
 
 
     @Override
@@ -49,13 +49,22 @@ public class Main extends Activity implements AdapterView.OnItemClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("Nearby chatrooms");
-        rooms = new HashMap<String, Room>();
         if (android.os.Build.VERSION.SDK_INT > 9)
         {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
-
+//        QBAuth.createSession("user", "password", new QBCallback() {
+//            @Override
+//            public void onComplete(Result result) {
+//
+//            }
+//
+//            @Override
+//            public void onComplete(Result result, Object o) {
+//
+//            }
+//        });
         searcher = new LocationSearch();
 //        try {
 //            searcher.performSearch();
@@ -66,7 +75,7 @@ public class Main extends Activity implements AdapterView.OnItemClickListener {
 //        locMan = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         mainMenu = (ListView) findViewById(R.id.main_menu);
         String[] chatrooms = new String[] { "WUHack", "Cardinals vs. Rockies" };
-        List<String> chatList = new ArrayList<String>();
+        chatList = new ArrayList<String>();
 
         chatList.addAll( Arrays.asList(chatrooms) );
         menuAdapter = new ArrayAdapter<String>(this, R.layout.chatroom, chatList);
@@ -191,6 +200,8 @@ public class Main extends Activity implements AdapterView.OnItemClickListener {
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Intent launchChat = new Intent(this, Chat.class);
+        launchChat.putExtra("chat name", chatList.get(i));
+        launchChat.putExtra("jc", 1);
         startActivity(launchChat);
     }
 

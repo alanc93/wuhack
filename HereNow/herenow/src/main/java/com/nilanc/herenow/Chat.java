@@ -1,123 +1,127 @@
 package com.nilanc.herenow;
 
 import android.app.Activity;
-import android.app.ActionBar;
-import android.app.Fragment;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.support.v4.content.LocalBroadcastManager;
+
+
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
-import android.text.format.Time;
+import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.TextView.OnEditorActionListener;
 
-import com.quickblox.module.chat.QBChatRoom;
+import android.widget.Toast;
 
+import com.google.android.gms.gcm.GoogleCloudMessaging;
+
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
-import static android.view.inputmethod.EditorInfo.*;
 
 public class Chat extends Activity {
+    public static final String RECEIVE_MESSAGE = "com.nilanc.herenow.RECEIVE_MESSAGE";
+    private String CHAT_ROOM;
 
+    String PROJECT_NUMBER = "56902053111";
+
+    private GoogleCloudMessaging gcm;
+    private String regid;
+    private MsgAdapter adptr;
+    private TextView messageView;
     private ListView msgList;
-    private MsgAdapter msgAdptr;
-    private EditText msg;
-    private Room chatRoom;
-
-    public static void start(Context context, Bundle bundle) {
-        Intent intent = new Intent(context, Chat.class);
-        intent.putExtras(bundle);
-        context.startActivity(intent);
-    }
+    private EditText t;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-
-        Intent intent = getIntent();
-
-
+        messageView = (TextView) findViewById(R.id.msgText);
         msgList = (ListView) findViewById(R.id.msgList);
 
-        msg = (EditText) findViewById(R.id.msgBox);
+        Intent i = getIntent();
+//        getActionBar().setTitle(i.getStringExtra(Main.CHAT_NAME));
+//        CHAT_ROOM = i.getStringExtra(Main.CHAT_ID);
 
+        // Tell GCM we want to receive messages.
+        registerWithGCM();
 
-        msgAdptr = new MsgAdapter(this, new ArrayList<Message>());
-        msgList.setAdapter(msgAdptr);
-        msgAdptr.add(new Message("Hi there!", new Date()));
-        msgAdptr.add(new Message("Isn't <event> so cool!", new Date()));
+        // Tell our local broadcast manager we want to receive messages and handle
+        // them with our 'bReceiver'.
+        adptr = new MsgAdapter(this, new ArrayList<Message>());
+        msgList.setAdapter(adptr);
 
-        msg.setOnEditorActionListener(new OnEditorActionListener() {
+        LocalBroadcastManager bManager = LocalBroadcastManager.getInstance(this);
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(RECEIVE_MESSAGE);
+        bManager.registerReceiver(bReceiver, intentFilter);
+
+        t = (EditText) findViewById(R.id.msgBox);
+        t.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public boolean onEditorAction(TextView v, int actId, KeyEvent e) {
-                if (actId == IME_ACTION_SEND) {
-                    //perform send message stuff
-                    Message m = new Message(v.getText().toString(), new Date());
-                    msgAdptr.add(m);
+            public boolean onEditorAction(TextView v, int actId, KeyEvent event) {
+                if(actId == EditorInfo.IME_ACTION_SEND) {
+                    Message m = new Message(v.getText().toString(), true);
+                    adptr.add(m);
+                    System.out.println("Added self thing");
+                    //send message to GCM
+                    try {
+                        gcm.send(RECEIVE_MESSAGE, m.getMsg(), null);
+                        Log.e("sent", "sent");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     v.setText("");
-                    msg.onEditorAction(IME_ACTION_DONE);
-                    return true;
+                    t.onEditorAction(EditorInfo.IME_ACTION_DONE);
                 }
                 return false;
             }
         });
-
-//        QBChatRoom cr = ;
     }
 
-    public void showMessage(Message message) {
-//        saveMessageToHistory(message);
-        msgAdptr.add(message);
-        msgAdptr.notifyDataSetChanged();
-        scrollDown();
-    }
 
-    public void showMessage(List<Message> messages) {
-        msgAdptr.add(messages);
-        msgAdptr.notifyDataSetChanged();
-        scrollDown();
-    }
-
-    private void scrollDown() {
-        msgList.setSelection(msgList.getCount() - 1);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.chat, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-
-        switch(item.getItemId()) {
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-            case R.id.action_settings:
-                return true;
+    // Set up a broadcast receiver
+    private BroadcastReceiver bReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if(intent.getAction().equals(RECEIVE_MESSAGE)) {
+                String message = intent.getStringExtra("message");
+                adptr.add(new Message(message, false));
+                System.out.println("Added other thing");
+//                messageView.setText(message);
+            }
         }
-        return super.onOptionsItemSelected(item);
+    };
+
+
+    // registerWithGCM contacts the GCM server and logs the ID it receives.
+    public void registerWithGCM(){
+        new AsyncTask<Void, Void, String>() {
+            @Override
+            protected String doInBackground(Void... params) {
+                String msg = "";
+                try {
+                    if (gcm == null) {
+                        gcm = GoogleCloudMessaging.getInstance(getApplicationContext());
+                    }
+                    String regid = gcm.register(PROJECT_NUMBER);
+                    // In reality, we would want to send this to the server so it can reach us.
+                    // For the sake of simplicity for this demo, we'll just copy and paste it from
+                    // the logs.
+                    msg = "Device registered, registration ID=" + regid;
+                    Log.i("GCM", msg);
+                } catch (IOException ex) {
+                    msg = "Error :" + ex.getMessage();
+                }
+                return msg;
+            }
+        }.execute(null, null, null);
     }
 }
