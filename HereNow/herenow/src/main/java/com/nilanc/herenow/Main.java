@@ -22,7 +22,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class Main extends Activity implements AdapterView.OnItemClickListener {
