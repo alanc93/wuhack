@@ -18,11 +18,9 @@ public class LocListener implements LocationListener {
 
     public void onLocationChanged(Location loc)
     {
-//        loc.getLatitude();
-//        loc.getLongitude();
         latitude=loc.getLatitude();
         longitude=loc.getLongitude();
-//
+
         Main.updateUI();
     }
 

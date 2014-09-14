@@ -66,10 +66,7 @@ public class LocationSearch {
 
             PlacesList places = request.execute().parseAs(PlacesList.class);
             System.out.println("STATUS = " + places.status);
-//            for (Place place : places.results) {
-//                System.out.print(place.name);
-//
-//            }
+
             return places;
 
         } catch (HttpResponseException e) {

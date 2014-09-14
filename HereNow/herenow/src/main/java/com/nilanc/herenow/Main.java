@@ -55,17 +55,9 @@ public class Main extends Activity implements AdapterView.OnItemClickListener {
         }
 
         searcher = new LocationSearch();
-//        try {
-//            searcher.performSearch();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
 
-//        locMan = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         mainMenu = (ListView) findViewById(R.id.main_menu);
         final List<Place> chatList = new ArrayList<Place>();
-//        chatList.addAll( Arrays.asList(chatrooms) );
-
         menuAdapter = new ArrayAdapter<Place>(this, android.R.layout.simple_list_item_2, android.R.id.text1, chatList) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
@@ -97,68 +89,11 @@ public class Main extends Activity implements AdapterView.OnItemClickListener {
         Location temp = LocListener.getLocation(this);
         updateUI();
 
-//        mNavigationDrawerFragment = (NavigationDrawerFragment)
-//                getFragmentManager().findFragmentById(R.id.navigation_drawer);
-//        mTitle = getTitle();
-//
-//        // Set up the drawer.
-//        mNavigationDrawerFragment.setUp(
-//                R.id.navigation_drawer,
-//                (DrawerLayout) findViewById(R.id.drawer_layout));
-
-//        LocationListener locLis = new LocationListener() {
-//            @Override
-//            public void onLocationChanged(Location location) {
-//                menuAdapter.add(location.toString());
-//            }
-//
-//            @Override
-//            public void onStatusChanged(String s, int i, Bundle bundle) {
-//
-//            }
-//
-//            @Override
-//            public void onProviderEnabled(String s) {
-//
-//            }
-//
-//            @Override
-//            public void onProviderDisabled(String s) {
-//
-//            }
-//        };
-
-//        locMan.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locLis);
     }
 
-//    @Override
-//    public void onNavigationDrawerItemSelected(int position) {
-//        // update the main content by replacing fragments
-//        FragmentManager fragmentManager = getFragmentManager();
-//        fragmentManager.beginTransaction()
-//                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-//                .commit();
-//    }
-
-//    public void onSectionAttached(int number) {
-//        switch (number) {
-//            case 1:
-//                mTitle = getString(R.string.title_section1);
-//                break;
-//            case 2:
-//                mTitle = getString(R.string.title_section2);
-//                break;
-//            case 3:
-//                Intent launchChat = new Intent(this, Chat.class);
-//                startActivity(launchChat);
-//                //mTitle = getString(R.string.title_section3);
-//                break;
-//        }
-//    }
 
     public void restoreActionBar() {
         ActionBar actionBar = getActionBar();
-//        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
     }
@@ -182,19 +117,6 @@ public class Main extends Activity implements AdapterView.OnItemClickListener {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        if (!mNavigationDrawerFragment.isDrawerOpen()) {
-//            // Only show items in the action bar relevant to this screen
-//            // if the drawer is not showing. Otherwise, let the drawer
-//            // decide what to show in the action bar.
-//            getMenuInflater().inflate(R.menu.main, menu);
-//            restoreActionBar();
-//            return true;
-//        }
-//        return super.onCreateOptionsMenu(menu);
-//    }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -250,13 +172,6 @@ public class Main extends Activity implements AdapterView.OnItemClickListener {
             textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
         }
-
-//        @Override
-//        public void onAttach(Activity activity) {
-//            super.onAttach(activity);
-//            ((Main) activity).onSectionAttached(
-//                    getArguments().getInt(ARG_SECTION_NUMBER));
-//        }
 
     }
 
