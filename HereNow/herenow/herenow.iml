@@ -104,6 +104,11 @@
     <orderEntry type="library" exported="" name="google-http-client-jackson-1.18.0-rc" level="project" />
     <orderEntry type="library" exported="" name="google-api-client-1.17.0-rc" level="project" />
     <orderEntry type="library" exported="" name="play-services-5.2.08" level="project" />
+<<<<<<< HEAD
+=======
+    <orderEntry type="library" exported="" name="support-annotations-20.0.0" level="project" />
+    <orderEntry type="library" exported="" name="support-v4-20.0.0" level="project" />
+>>>>>>> dan
     <orderEntry type="library" exported="" name="jackson-core-asl-1.9.1" level="project" />
   </component>
 </module>
