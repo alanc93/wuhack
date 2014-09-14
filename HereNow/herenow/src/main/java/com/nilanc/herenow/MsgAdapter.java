@@ -5,6 +5,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewManager;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -50,10 +51,21 @@ public class MsgAdapter extends BaseAdapter {
         } else {
             holder = (MsgHolder) convertView.getTag();
         }
+        if (position == 0) {
+            holder.msgSender.setText("Anonymous Hacker");
+        } else if (position > 0) {
+            Message prev = (Message) getItem(position - 1);
+            if (!prev.fromSelf()) {
+                holder.msgSender.setText("Anonymous Hacker");
+            }
+        } else {
+            holder.msgSender.setPadding(0, 0, 0, 0);
+            ((ViewManager) holder.msgSender.getParent()).removeView(holder.msgSender);
+        }
         holder.msgText.setText(msg.getMsg());
         if (msg.fromSelf()) {
             holder.content.setGravity(Gravity.END);
-            holder.content.setBackgroundColor(0xFFFEEE);
+            holder.content.setBackgroundColor(0x99CCFF);
         } else {
             holder.content.setGravity(Gravity.START);
         }
@@ -72,12 +84,14 @@ public class MsgAdapter extends BaseAdapter {
 
     public MsgHolder createMsgHolder(View v) {
         MsgHolder holder = new MsgHolder();
+        holder.msgSender = (TextView) v.findViewById(R.id.msgSender);
         holder.msgText = (TextView) v.findViewById(R.id.msgText);
         holder.content = (LinearLayout) v.findViewById(R.id.content);
         return holder;
     }
 
     private static class MsgHolder {
+        public TextView msgSender;
         public TextView msgText;
         public LinearLayout content;
     }

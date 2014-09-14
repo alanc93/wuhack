@@ -44,7 +44,7 @@ public class LocationSearch {
         double lon = LocListener.longitude;
         System.out.println(lat);
         System.out.println(lon);
-        int radius = 150;
+        int radius = 200;
 
         return performSearch(lat, lon, radius);
     }

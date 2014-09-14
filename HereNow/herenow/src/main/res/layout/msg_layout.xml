@@ -7,15 +7,29 @@
     <LinearLayout
         android:id="@+id/content"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/msgSender"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="15sp"
+            android:paddingLeft="15sp"
+            android:paddingRight="15sp"
+            android:gravity="end"/>
 
         <TextView
             android:id="@+id/msgText"
-            android:text="hello"
+            android:textSize="16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="15sp"
             android:gravity="end"/>
 
-        </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>
