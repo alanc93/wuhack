@@ -2,102 +2,64 @@
 <pre-dex-items>
 
     <item
-<<<<<<< HEAD
-        dex="/Users/DanNi/projects/wuhack2/HereNow/herenow/build/intermediates/pre-dexed/debug/google-http-client-jackson2-1.18.0-rc-e7dd627e085daebb96cd9e12fae06dc6fdf90a2c.jar"
-        jar="/Users/DanNi/projects/wuhack2/HereNow/herenow/libs/google-http-client-jackson2-1.18.0-rc.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="5cc2dc4e3ba7f626c1a9db4fc5d2460c22275474"/>
-    <item
-        dex="/Users/DanNi/projects/wuhack2/HereNow/herenow/build/intermediates/pre-dexed/debug/jackson-core-asl-1.9.1-9a8fd9d9c09a0723dce2a15f42bd296e061de72e.jar"
-        jar="/Users/DanNi/projects/wuhack2/HereNow/herenow/libs/jackson-core-asl-1.9.1.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="6df555d92446b54126d521f865445f8f66251a08"/>
-    <item
-        dex="/Users/DanNi/projects/wuhack2/HereNow/herenow/build/intermediates/pre-dexed/debug/google-api-client-1.17.0-rc-b49db04f25da9a3ad4889aa525d500d00633eacb.jar"
-        jar="/Users/DanNi/.gradle/caches/modules-2/files-2.1/com.google.api-client/google-api-client/1.17.0-rc/f01974c9ec3e5570d8c75ecf7fce004e06757e03/google-api-client-1.17.0-rc.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="f01974c9ec3e5570d8c75ecf7fce004e06757e03"/>
-    <item
-        dex="/Users/DanNi/projects/wuhack2/HereNow/herenow/build/intermediates/pre-dexed/debug/guava-14.0.1-ce96f6d8295c1526a39c5d313bf2ce7ea4cc303c.jar"
-        jar="/Users/DanNi/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/14.0.1/69e12f4c6aeac392555f1ea86fab82b5e5e31ad4/guava-14.0.1.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="69e12f4c6aeac392555f1ea86fab82b5e5e31ad4"/>
-    <item
-        dex="/Users/DanNi/projects/wuhack2/HereNow/herenow/build/intermediates/pre-dexed/debug/classes-98a57edffdac871e4b989276884070b800b961a5.jar"
-        jar="/Users/DanNi/projects/wuhack2/HereNow/herenow/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/classes.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="8694693636ab36910c8100ce527c258ff3ebece0"/>
-    <item
-        dex="/Users/DanNi/projects/wuhack2/HereNow/herenow/build/intermediates/pre-dexed/debug/google-api-client-android-1.17.0-rc-a140606d48b2103728597a175af55a24f9292c22.jar"
-        jar="/Users/DanNi/.gradle/caches/modules-2/files-2.1/com.google.api-client/google-api-client-android/1.17.0-rc/cfef30e5d361e2fd2892eed93a183db48dcae153/google-api-client-android-1.17.0-rc.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="cfef30e5d361e2fd2892eed93a183db48dcae153"/>
-    <item
-        dex="/Users/DanNi/projects/wuhack2/HereNow/herenow/build/intermediates/pre-dexed/debug/google-http-client-jackson-1.18.0-rc-bbe5efb3c68e6072f3a4a75648b4e78a12303303.jar"
-        jar="/Users/DanNi/projects/wuhack2/HereNow/herenow/libs/google-http-client-jackson-1.18.0-rc.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="41709e65945d199103630eea319225cc12b40044"/>
-    <item
-        dex="/Users/DanNi/projects/wuhack2/HereNow/herenow/build/intermediates/pre-dexed/debug/google-oauth-client-1.17.0-rc-714f35d1051ac1192d1b33b123663085ae396063.jar"
-        jar="/Users/DanNi/.gradle/caches/modules-2/files-2.1/com.google.oauth-client/google-oauth-client/1.17.0-rc/76bcfba455c5a053d532bbac2cf30a2b2c341cf3/google-oauth-client-1.17.0-rc.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="76bcfba455c5a053d532bbac2cf30a2b2c341cf3"/>
-    <item
-        dex="/Users/DanNi/projects/wuhack2/HereNow/herenow/build/intermediates/pre-dexed/debug/google-http-client-android-1.17.0-rc-4dabf14841d68362bada76f41c3f322e2a59e93b.jar"
-        jar="/Users/DanNi/.gradle/caches/modules-2/files-2.1/com.google.http-client/google-http-client-android/1.17.0-rc/f3fc9acc57c2a55fd17a421710f564b73dabda21/google-http-client-android-1.17.0-rc.jar"
+        dex="/home/Alex/Projects/wuhack/HereNow/herenow/build/intermediates/pre-dexed/debug/google-http-client-android-1.17.0-rc-c52f29db86c9818773179f23765a571dcbcf16d3.jar"
+        jar="/home/Alex/.gradle/caches/modules-2/files-2.1/com.google.http-client/google-http-client-android/1.17.0-rc/f3fc9acc57c2a55fd17a421710f564b73dabda21/google-http-client-android-1.17.0-rc.jar"
         jumboMode="false"
         revision="19.1.0"
         sha1="f3fc9acc57c2a55fd17a421710f564b73dabda21"/>
     <item
-        dex="/Users/DanNi/projects/wuhack2/HereNow/herenow/build/intermediates/pre-dexed/debug/classes-7edee132fed0b251da83917cb289620ba696545a.jar"
-        jar="/Users/DanNi/projects/wuhack2/HereNow/herenow/build/intermediates/exploded-aar/com.google.android.gms/play-services/5.2.08/classes.jar"
+        dex="/home/Alex/Projects/wuhack/HereNow/herenow/build/intermediates/pre-dexed/debug/jackson-core-asl-1.9.1-0aaa023c648c2833ff105ef2710c1813d665b05d.jar"
+        jar="/home/Alex/Projects/wuhack/HereNow/herenow/libs/jackson-core-asl-1.9.1.jar"
         jumboMode="false"
         revision="19.1.0"
-        sha1="1ed7a7a05185651f9af41ad93711cb96b66f331c"/>
+        sha1="6df555d92446b54126d521f865445f8f66251a08"/>
     <item
-        dex="/Users/DanNi/projects/wuhack2/HereNow/herenow/build/intermediates/pre-dexed/debug/support-annotations-20.0.0-bca9cd8c8082330ef7549e0398af852faae531fd.jar"
-        jar="/Applications/Android Studio.app/sdk/extras/android/m2repository/com/android/support/support-annotations/20.0.0/support-annotations-20.0.0.jar"
+        dex="/home/Alex/Projects/wuhack/HereNow/herenow/build/intermediates/pre-dexed/debug/google-http-client-jackson-1.18.0-rc-275901443d4142630bece357fec118882a275c47.jar"
+        jar="/home/Alex/Projects/wuhack/HereNow/herenow/libs/google-http-client-jackson-1.18.0-rc.jar"
         jumboMode="false"
         revision="19.1.0"
-        sha1="9d9013e9ff35fc3756411e62873c363c70c638fa"/>
+        sha1="41709e65945d199103630eea319225cc12b40044"/>
     <item
-        dex="/Users/DanNi/projects/wuhack2/HereNow/herenow/build/intermediates/pre-dexed/debug/jsr305-1.3.9-6f516445b6b9641dc73e2e9f938e9fabf9d69867.jar"
-        jar="/Users/DanNi/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/1.3.9/40719ea6961c0cb6afaeb6a921eaa1f6afd4cfdf/jsr305-1.3.9.jar"
+        dex="/home/Alex/Projects/wuhack/HereNow/herenow/build/intermediates/pre-dexed/debug/google-http-client-1.17.0-rc-ee25d990362ef2881d63e75ef485a3e30f173053.jar"
+        jar="/home/Alex/.gradle/caches/modules-2/files-2.1/com.google.http-client/google-http-client/1.17.0-rc/637da6cca16f4a97c4771137bce02e7c291e67af/google-http-client-1.17.0-rc.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="637da6cca16f4a97c4771137bce02e7c291e67af"/>
+    <item
+        dex="/home/Alex/Projects/wuhack/HereNow/herenow/build/intermediates/pre-dexed/debug/jsr305-1.3.9-35ab969d26af77c468c052caca73ec78065552ed.jar"
+        jar="/home/Alex/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/1.3.9/40719ea6961c0cb6afaeb6a921eaa1f6afd4cfdf/jsr305-1.3.9.jar"
         jumboMode="false"
         revision="19.1.0"
         sha1="40719ea6961c0cb6afaeb6a921eaa1f6afd4cfdf"/>
     <item
-        dex="/Users/DanNi/projects/wuhack2/HereNow/herenow/build/intermediates/pre-dexed/debug/google-api-client-jackson2-1.18.0-rc-831db932ee50fca873440d40a4122bafb3a82236.jar"
-        jar="/Users/DanNi/projects/wuhack2/HereNow/herenow/libs/google-api-client-jackson2-1.18.0-rc.jar"
+        dex="/home/Alex/Projects/wuhack/HereNow/herenow/build/intermediates/pre-dexed/debug/google-oauth-client-1.17.0-rc-be063de94302e048e743403f2feb29f003d22f57.jar"
+        jar="/home/Alex/.gradle/caches/modules-2/files-2.1/com.google.oauth-client/google-oauth-client/1.17.0-rc/76bcfba455c5a053d532bbac2cf30a2b2c341cf3/google-oauth-client-1.17.0-rc.jar"
         jumboMode="false"
         revision="19.1.0"
-        sha1="4eab790cae32ad13362818bdfefd32259ea01dad"/>
+        sha1="76bcfba455c5a053d532bbac2cf30a2b2c341cf3"/>
     <item
-        dex="/Users/DanNi/projects/wuhack2/HereNow/herenow/build/intermediates/pre-dexed/debug/internal_impl-20.0.0-39a1df3251d148a8b0b926b59d2ef2c1eedbb248.jar"
-        jar="/Users/DanNi/projects/wuhack2/HereNow/herenow/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/libs/internal_impl-20.0.0.jar"
+        dex="/home/Alex/Projects/wuhack/HereNow/herenow/build/intermediates/pre-dexed/debug/google-api-client-1.17.0-rc-98292cc6bf8ea6837d81dfa88f1ff08c950cda25.jar"
+        jar="/home/Alex/.gradle/caches/modules-2/files-2.1/com.google.api-client/google-api-client/1.17.0-rc/f01974c9ec3e5570d8c75ecf7fce004e06757e03/google-api-client-1.17.0-rc.jar"
         jumboMode="false"
         revision="19.1.0"
-        sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d"/>
+        sha1="f01974c9ec3e5570d8c75ecf7fce004e06757e03"/>
     <item
-        dex="/Users/DanNi/projects/wuhack2/HereNow/herenow/build/intermediates/pre-dexed/debug/google-http-client-1.17.0-rc-1b0744256c517758c000193ce9d95452f225aa85.jar"
-        jar="/Users/DanNi/.gradle/caches/modules-2/files-2.1/com.google.http-client/google-http-client/1.17.0-rc/637da6cca16f4a97c4771137bce02e7c291e67af/google-http-client-1.17.0-rc.jar"
+        dex="/home/Alex/Projects/wuhack/HereNow/herenow/build/intermediates/pre-dexed/debug/guava-14.0.1-90ae84d4234bbc5dbd85249449a679baef875c10.jar"
+        jar="/home/Alex/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/14.0.1/69e12f4c6aeac392555f1ea86fab82b5e5e31ad4/guava-14.0.1.jar"
         jumboMode="false"
         revision="19.1.0"
-        sha1="637da6cca16f4a97c4771137bce02e7c291e67af"/>
-=======
-        dex="/home/Alex/Projects/wuhack/HereNow/herenow/build/intermediates/pre-dexed/debug/support-v4-19.0.1-4ec8c9d89c2a81cac20606618c3aa1cdc94346b4.jar"
-        jar="/home/Alex/android-studio/sdk/extras/android/m2repository/com/android/support/support-v4/19.0.1/support-v4-19.0.1.jar"
+        sha1="69e12f4c6aeac392555f1ea86fab82b5e5e31ad4"/>
+    <item
+        dex="/home/Alex/Projects/wuhack/HereNow/herenow/build/intermediates/pre-dexed/debug/support-v4-19.1.0-3b8eb2bd215e2797180a1558380ae94712b4d701.jar"
+        jar="/home/Alex/Downloads/android-sdk-linux/extras/android/m2repository/com/android/support/support-v4/19.1.0/support-v4-19.1.0.jar"
         jumboMode="false"
         revision="19.1.0"
-        sha1="587da9a481ffd341d2fa091704489b89845ddacd"/>
->>>>>>> 44b9a183b6709afde800ccbe47e38d218771d404
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67"/>
+    <item
+        dex="/home/Alex/Projects/wuhack/HereNow/herenow/build/intermediates/pre-dexed/debug/google-api-client-android-1.17.0-rc-c6eae5152d46538f033503ec3c35e1c78e1e9db6.jar"
+        jar="/home/Alex/.gradle/caches/modules-2/files-2.1/com.google.api-client/google-api-client-android/1.17.0-rc/cfef30e5d361e2fd2892eed93a183db48dcae153/google-api-client-android-1.17.0-rc.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="cfef30e5d361e2fd2892eed93a183db48dcae153"/>
 
 </pre-dex-items>

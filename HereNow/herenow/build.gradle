@@ -19,7 +19,7 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:20.0.0'
+//    compile 'com.android.support:support-v4:20.0.0'
     compile 'com.google.android.gms:play-services:5.+'
     compile 'com.google.http-client:google-http-client-android:1.17.0-rc'
     compile 'com.google.guava:guava:14.0.+'
