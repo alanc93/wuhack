@@ -21,6 +21,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
+import com.quickblox.module.chat.QBChatRoom;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -47,6 +49,8 @@ public class Chat extends Activity {
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
+        Intent intent = getIntent();
+
 
         msgList = (ListView) findViewById(R.id.msgList);
 
@@ -72,6 +76,8 @@ public class Chat extends Activity {
                 return false;
             }
         });
+
+//        QBChatRoom cr = ;
     }
 
     public void showMessage(Message message) {

@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class Main extends Activity implements AdapterView.OnItemClickListener {
@@ -40,12 +41,15 @@ public class Main extends Activity implements AdapterView.OnItemClickListener {
     private ListView mainMenu;
     private LocationManager locMan;
     private static LocationSearch searcher;
+    private HashMap<String, Room> rooms;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("Nearby chatrooms");
+        rooms = new HashMap<String, Room>();
         if (android.os.Build.VERSION.SDK_INT > 9)
         {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -63,6 +67,7 @@ public class Main extends Activity implements AdapterView.OnItemClickListener {
         mainMenu = (ListView) findViewById(R.id.main_menu);
         String[] chatrooms = new String[] { "WUHack", "Cardinals vs. Rockies" };
         List<String> chatList = new ArrayList<String>();
+
         chatList.addAll( Arrays.asList(chatrooms) );
         menuAdapter = new ArrayAdapter<String>(this, R.layout.chatroom, chatList);
         mainMenu.setAdapter(menuAdapter);

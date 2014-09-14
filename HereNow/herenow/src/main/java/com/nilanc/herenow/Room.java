@@ -19,6 +19,7 @@ import org.jivesoftware.smack.packet.Message;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Map;
 
 public class Room implements ChatInt, RoomListener, ChatMessageListener {
 
@@ -39,6 +40,7 @@ public class Room implements ChatInt, RoomListener, ChatMessageListener {
     public void sendMessage(String message) throws XMPPException {
         if (chatRoom != null) {
             chatRoom.sendMessage(message);
+
         } else {
             Toast.makeText(chat, "Join unsuccessful", Toast.LENGTH_LONG).show();
         }
