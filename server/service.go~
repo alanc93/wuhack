@@ -47,7 +47,7 @@ type MessengerService struct {
 																															// Message just wraps a string in a struct.  We could add other fields here if we wanted.
 type Message struct {
 	Content string
-	From	string
+//	From	string
 	To      string
 }
 
@@ -60,7 +60,7 @@ func (ms *MessengerService) Echo(r *http.Request, m *Message, resp *Message) err
 																																			// GCMMsg is an message which can be encoded to JSON the way the GCM server likes
 type GCMMsg struct {
 	Data            map[string]string `json:"data"`
-	RegistrationIDs map[string]map[]string          `json:"registration_ids"`
+	RegistrationIDs []string          `json:"registration_ids"`
 }
 
 // Creates a GCMMsg from a Message
@@ -70,9 +70,10 @@ func createGCMMsg(msg *Message) *GCMMsg {
 	// Prepare GCM message
 	gcmm := &GCMMsg{}
 	gcmm.Data = map[string]string{"title": title, "message": msg.Content}
-	gcmm.RegistrationIDs = map[string]map[]string{"group": msg.To,{msg.From}}
+	gcmm.RegistrationIDs = []string{msg.To}
 	return gcmm
 }
+
 // Encodes a Message as JSON compatible with GCM
 func encodeMsg(msg *Message) io.Reader {
 	gcmm := createGCMMsg(msg)
@@ -82,6 +83,7 @@ func encodeMsg(msg *Message) io.Reader {
 	// Create an io.Reader to return
 	return bytes.NewReader(buf.Bytes())
 }
+
 func createRequest(msg *Message) (*http.Request, error) {
 	// Encode Message into JSON compatible with GCM
 	body := encodeMsg(msg)
@@ -95,6 +97,7 @@ func createRequest(msg *Message) (*http.Request, error) {
 	req.Header.Add("Authorization", "key="+API_KEY)
 	return req, nil
 }
+
 // Send crafts a msg to send to GCM based on the Message passed in.  It returns the
 // GCM message which was sent to the server and logs the server's response.
 func (ms *MessengerService) Send(r *http.Request, m *Message, res *Message) error {

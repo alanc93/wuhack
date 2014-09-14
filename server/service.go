@@ -7,7 +7,7 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
-	"github.com/crhym3/go-endpoints/endpoints"
+	"go-endpoints/endpoints"
 	"appengine"
 	"appengine/urlfetch"
 )

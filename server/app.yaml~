@@ -1,4 +1,4 @@
-application: hereslashnow
+application: HereNow
 version: auto
 runtime: go
 api_version: go1

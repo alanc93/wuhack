@@ -30,7 +30,7 @@ public class Chat extends Activity {
     public static final String RECEIVE_MESSAGE = "com.nilanc.herenow.RECEIVE_MESSAGE";
     private String CHAT_ROOM;
 
-    String PROJECT_NUMBER = "56902053111";
+    String PROJECT_NUMBER = "e125be0bdfdfbf2ca8fdc00e294d6850efaa";//"56902053111";
 
     private GoogleCloudMessaging gcm;
     private String regid;
@@ -68,16 +68,19 @@ public class Chat extends Activity {
             @Override
             public boolean onEditorAction(TextView v, int actId, KeyEvent event) {
                 if(actId == EditorInfo.IME_ACTION_SEND) {
-                    Message m = new Message(v.getText().toString(), true);
+                    final Message m = new Message(v.getText().toString(), true);
                     adptr.add(m);
                     System.out.println("Added self thing");
                     //send message to GCM
-                    try {
-                        gcm.send(RECEIVE_MESSAGE, m.getMsg(), null);
-                        Log.e("sent", "sent");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+//                    try {
+////                        gcm.send(RECEIVE_MESSAGE, m.getMsg(), null);
+//                        sendMessage(m);
+//                        System.out.println("sent");
+//                    } catch (IOException e) {
+//                        System.out.println("failed");
+//                        e.printStackTrace();
+//                    }
+                    sendMessage(m);
                     v.setText("");
                     t.onEditorAction(EditorInfo.IME_ACTION_DONE);
                 }
@@ -100,6 +103,25 @@ public class Chat extends Activity {
         }
     };
 
+
+    public void sendMessage(final Message m) {
+        new AsyncTask<Void, Void, String>() {
+            @Override
+            protected String doInBackground(Void... params) {
+                try {
+                    if (gcm == null) {
+                        gcm = GoogleCloudMessaging.getInstance(getApplicationContext());
+                    }
+                    String regid = gcm.register(PROJECT_NUMBER);
+                    gcm.send(CHAT_ROOM, m.getMsg(), null);
+                    System.out.println("Sent");
+                } catch (IOException e) {
+                    System.out.println("Error: " + e.getMessage());
+                }
+                return m.getMsg();
+            }
+        }.execute(null,null,null);
+    }
 
     // registerWithGCM contacts the GCM server and logs the ID it receives.
     public void registerWithGCM(){
